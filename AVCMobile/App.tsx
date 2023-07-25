@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 const App = () => {
   const handleButtonPress = () => {
@@ -7,23 +7,28 @@ const App = () => {
     console.log('Avançar para próxima tela...');
   };
 
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Texto Centralizado</Text>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Botão 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Botão 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Botão 3</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Botão 4</Text>
-      </TouchableOpacity>
+      <Text style={styles.description}>This is a description for the view.</Text>
+      <View style={styles.buttonRow}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Button 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Button 2</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonRow}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Button 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Button 4</Text>
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity style={styles.nextButton} onPress={handleButtonPress}>
-        <Text style={styles.buttonText}>Avançar</Text>
+        <Text style={styles.nextButtonText}>Next Screen</Text>
       </TouchableOpacity>
     </View>
   );
@@ -34,23 +39,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  description: {
+    fontSize: 18,
     marginBottom: 20,
+    textAlign: 'center',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    marginBottom: 10,
   },
   button: {
+    flex: 1,
     backgroundColor: '#007BFF',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 8,
-    marginBottom: 10,
+    marginHorizontal: 5,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   nextButton: {
     backgroundColor: '#28a745',
@@ -59,6 +71,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 20,
   },
+  nextButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
+
 
 export default App;
