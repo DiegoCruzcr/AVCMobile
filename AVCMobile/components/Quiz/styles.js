@@ -6,11 +6,29 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       padding: 20,
+      backgroundColor: '#24464F'
+    },
+    next_button: {
+      backgroundColor: '#249E96',
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      borderRadius: 8,
+      marginHorizontal: 5,
     },
     description: {
-      fontSize: 18,
-      marginBottom: 20,
-      textAlign: 'center',
+      fontFamily: 'Inter',
+      textAlign: 'left',
+      fontSize: 24,
+      color: '#fff',
+      marginEnd: 30,
+      marginTop: 50
+    },
+    hint_text: {
+      fontFamily: 'Inter',
+      fontSize: 16,
+      color: '#fff',
+      marginBottom: 50,
+      marginTop: 50
     },
     buttonRow: {
       flexDirection: 'row',
@@ -31,7 +49,8 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     nextButton: {
-      backgroundColor: '#28a745',
+      backgroundColor: '#249E96',
+      left: 100,
       paddingHorizontal: 20,
       paddingVertical: 10,
       borderRadius: 8,

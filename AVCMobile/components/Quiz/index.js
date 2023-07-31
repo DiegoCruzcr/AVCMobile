@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./styles";
 import { View, Text, TouchableOpacity } from "react-native";
 import ButtonGroup from "../ButtonGroup";
+import NextButton from "../NextButton";
 // import { useNavigation } from "@react-navigation/native";
 
-const Quiz = () => {
+const Quiz = ({description, hint}) => {
     // const navigation = useNavigation();
 
     const handleButtonPress = () => {
@@ -15,11 +16,10 @@ const Quiz = () => {
 
     return (
         <View style={styles.container}>
-        <Text style={styles.description}>1a Nivel de consciencia.</Text>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.hint_text}>{hint}</Text>
         <ButtonGroup />
-        <TouchableOpacity style={styles.nextButton} onPress={() => handleButtonPress}>
-          <Text style={styles.nextButtonText}>Next Screen</Text>
-        </TouchableOpacity>
+        <NextButton />
       </View>
     );
     }

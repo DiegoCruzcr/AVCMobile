@@ -5,6 +5,7 @@ import useButtonHook from '../../hooks/useButtonHook';
 import { Text } from 'react-native';
 import styles from './styles';
 import Button from '../Button';
+import ButtonOption from '../ButtonOption';
 
 const ButtonGroup = () => {
   const { selectedValues, sum, handleButtonPress } = useButtonHook();
@@ -12,12 +13,12 @@ const ButtonGroup = () => {
   return (
     <View style={styles.container}>
         <View style={styles.buttonRow}>
-            <Button text="Alerta" onPress={() => handleButtonPress(1)}/>
-            <Button text="Sonolento, mas despertavel com minima estimulação" onPress={() =>handleButtonPress(2)}/>
+            <ButtonOption title="Alerta; reponde com entusiasmo" number={0} onPress={() => handleButtonPress(1)}/>
+            <ButtonOption title="Não alerta, mínima estimulação obedece, responde ou reage." number={1} onPress={() => handleButtonPress(1)}/>
         </View>
         <View style={styles.buttonRow}>
-            <Button text="Sonolento, requer estimulação repetida para responder" onPress={() =>handleButtonPress(3)}/>
-            <Button text="Coma" onPress={() => handleButtonPress(4)}/>
+            <ButtonOption title="Não alerta, requer repetida estimulação ou estimulação dolorosa" number={3} onPress={() => handleButtonPress(1)}/>
+            <ButtonOption title="Responde somente com reflexo motor ou reações autonômicas" number={4} onPress={() => handleButtonPress(1)}/>
         </View>
       <View>
         <Text>Sum: {sum}</Text>
