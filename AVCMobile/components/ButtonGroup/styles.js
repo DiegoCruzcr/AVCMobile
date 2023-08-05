@@ -23,8 +23,11 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonRow: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         marginBottom: 10,
-      }
+      },
+    buttonSum: {
+      bottom: -20,
+    }
 });
 export default styles;

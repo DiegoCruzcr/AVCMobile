@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
       textAlign: 'left',
       fontSize: 24,
       color: '#fff',
-      marginEnd: 30,
-      marginTop: 50
+      marginTop: 50,
+      fontWeight: 'bold'
     },
     hint_text: {
       fontFamily: 'Inter',

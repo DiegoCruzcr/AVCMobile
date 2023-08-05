@@ -15,13 +15,11 @@ const ButtonGroup = () => {
         <View style={styles.buttonRow}>
             <ButtonOption title="Alerta; reponde com entusiasmo" number={0} onPress={() => handleButtonPress(1)}/>
             <ButtonOption title="Não alerta, mínima estimulação obedece, responde ou reage." number={1} onPress={() => handleButtonPress(1)}/>
-        </View>
-        <View style={styles.buttonRow}>
-            <ButtonOption title="Não alerta, requer repetida estimulação ou estimulação dolorosa" number={3} onPress={() => handleButtonPress(1)}/>
-            <ButtonOption title="Responde somente com reflexo motor ou reações autonômicas" number={4} onPress={() => handleButtonPress(1)}/>
+            <ButtonOption title="Não alerta, requer repetida estimulação ou estimulação dolorosa" number={2} onPress={() => handleButtonPress(1)}/>
+            <ButtonOption title="Responde somente com reflexo motor ou reações autonômicas" number={3} onPress={() => handleButtonPress(1)}/>
         </View>
       <View>
-        <Text>Sum: {sum}</Text>
+        <Text style={styles.buttonSum}>Sum: {sum}</Text>
       </View>
     </View>
   );
