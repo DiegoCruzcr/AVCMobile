@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
       },
     buttonSum: {
-      bottom: -20,
+      textAlign: 'right',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end'
     }
 });
 export default styles;
