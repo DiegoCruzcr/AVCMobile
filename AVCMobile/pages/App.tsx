@@ -1,24 +1,20 @@
 import React from 'react';
-import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Etapa from './Quiz/const';
 import * as pages from './Quiz/quizPages'
-import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
-import { ScrollViewProps, ScrollView, StyleSheet } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import MyDrawer from '../components/MyDrawer';
+
 
 const Drawer = createDrawerNavigator();
 
 function App() {
   return (
-   
 
-    
-   
-    <NavigationContainer>
-      
+    <NavigationContainer>      
     <Drawer.Navigator 
-
+    drawerContent={(props) => <MyDrawer {...props}/>}
+    
     screenOptions={{
           headerStyle: {
             backgroundColor: '#24464F',
