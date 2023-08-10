@@ -1,35 +1,59 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Etapa from './Quiz/const';
-import * as pages from './Quiz/quizPages'
+import * as pages from './Quiz'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MyDrawer from '../components/MyDrawer';
-
+import Home from './Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+
 
 function App() {
   return (
-
-    <NavigationContainer>      
-    <Drawer.Navigator 
-    drawerContent={(props) => <MyDrawer {...props}/>}
-    
-    screenOptions={{
-          headerStyle: {
-            backgroundColor: '#24464F',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 20,
-          },
-      }}> 
-      <Drawer.Screen name={Etapa[0].description} component={pages.Etapa1}></Drawer.Screen>
-      <Drawer.Screen name={Etapa[1].description} component={pages.Etapa1_1}></Drawer.Screen>
-      <Drawer.Screen name={Etapa[2].description} component={pages.Etapa1_2}></Drawer.Screen>
-    </Drawer.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='home'>
+        <Stack.Screen name='home' component={Home}
+          options={{ headerShown: false }}></Stack.Screen>
+        <Stack.Screen name='quiz' component={QuizPage}
+          options={{ headerShown: false }}></Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+function QuizPage() {
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <MyDrawer {...props} />}
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#24464F',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 20,
+        },
+        drawerActiveTintColor: "#fff",
+        drawerInactiveTintColor: "rgba(255, 255, 255, 0.7)"
+      }}>
+      {
+        pages.Etapas.map((etapa, index) => (
+          <Drawer.Screen
+            name={Etapa[index].description}
+            component={etapa}
+            options={{
+              headerTitleStyle: {
+                fontSize: 16
+              }
+            }} ></Drawer.Screen>
+        ))
+      }
+    </Drawer.Navigator>
   );
 };
 

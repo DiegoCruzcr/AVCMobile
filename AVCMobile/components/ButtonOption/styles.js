@@ -1,12 +1,22 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     buttonContainer: {
       alignItems: 'center',
-      padding: 10,
+      paddingVertical: 10,
       margin: 10,
       width: 370,
       height: 90,
+      backgroundColor: '#249E96',
+      borderRadius: 10,
+      flexDirection: 'row'
+    },
+    buttonContainerSixRows: {
+      alignItems: 'center',
+      paddingVertical: 5,
+      margin: 10,
+      width: 370,
+      height: 65,
       backgroundColor: '#249E96',
       borderRadius: 10,
       flexDirection: 'row'
@@ -22,15 +32,16 @@ const styles = StyleSheet.create({
     },
     numberText: {
       textAlign: 'center',
-      fontSize: 30,
       color: 'white',
       fontWeight: 'bold',
+      
     },
     buttonText: {
       color: 'white',
       fontWeight: 'bold',
-      marginLeft: 40,
+      paddingRight: 15,
     },
+   
   });
 
 export default styles;

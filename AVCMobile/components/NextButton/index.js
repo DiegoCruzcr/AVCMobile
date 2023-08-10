@@ -6,14 +6,10 @@ const NextButton = () => {
   return (
     <>
     <TouchableOpacity style={styles.nextButton}>
-    
       <Text style={styles.nextButtonText}>Next</Text>
-    
     </TouchableOpacity>
   </>
   );
 };
-
-
 
 export default NextButton;
