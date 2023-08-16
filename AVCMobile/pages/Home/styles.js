@@ -24,14 +24,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   containerLogo: {
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   logo: {
-    top: '55%',
     width: 281,
-    height: 169,
+    height: 169
   },
-
+ 
 })
 
 export default styles;
