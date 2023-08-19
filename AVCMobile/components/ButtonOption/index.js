@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
-const ButtonOption = ({ title, number, onPress, questions, hasNT, lastIndex}) => {
+const ButtonOption = ({ title, number, questions, hasNT, lastIndex, onPress}) => {
   const [numberText, setNumberText] = useState(null);
- 
+  const [isPressed, setIsPressed] = useState(false);
+  
+  const toggleButton = () => {
+    setIsPressed(!isPressed);
+    onPress();
+  }
 
   useEffect(() => {
     if (hasNT) {
@@ -19,7 +24,7 @@ const ButtonOption = ({ title, number, onPress, questions, hasNT, lastIndex}) =>
   }, [number, questions, hasNT]);
 
   return (
-    <TouchableOpacity style={questions === false ? styles.buttonContainer : styles.buttonContainerSixRows} onPress={onPress}>
+    <TouchableOpacity style={questions === false ? styles.buttonContainer : styles.buttonContainerSixRows} onPress={toggleButton}>
       <View style={styles.numberContainer}>
         <Text style={[styles.numberText, hasNT ? {fontSize: 25} : {fontSize:30}]}>{numberText}</Text>
       </View>

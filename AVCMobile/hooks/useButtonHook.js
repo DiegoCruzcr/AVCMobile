@@ -1,19 +1,19 @@
 // hooks/useButtonHook.js
 import { useState } from 'react';
+import { grade } from '../pages/App';
 
 const useButtonHook = () => {
-  const [selectedValues, setSelectedValues] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
   const [sum, setSum] = useState(0);
 
-  const handleButtonPress = (value) => {
-    // Add the selected button value to the array of selectedValues
-    setSelectedValues([...selectedValues, value]);
-
-    // Calculate the new sum based on the selectedValues
-    const newSum = selectedValues.reduce((acc, val) => acc + val, 0);
-    setSum(newSum + value);
+  const handleButtonPress = (value, gradeIndex) => {
+    setSelectedValue(value);
+    setSum(value); // Set the sum to the selected value
+    grade[gradeIndex] = value;
   };
-  return { selectedValues, sum, handleButtonPress };
+
+  return { selectedValue, sum, handleButtonPress };
 };
 
 export default useButtonHook;
+

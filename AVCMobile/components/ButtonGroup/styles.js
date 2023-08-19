@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
       textAlign: 'right',
       justifyContent: 'flex-end',
       alignItems: 'flex-end'
+    },
+    selectedValue: {
+      color: 'white',
+      fontWeight: 'bold'
     }
 });
 export default styles;

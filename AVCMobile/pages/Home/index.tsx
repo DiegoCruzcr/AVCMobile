@@ -10,6 +10,9 @@ import ConfirmDialog from '../../components/ConfirmDialog';
 export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
     const [showComponent, setShowComponent] = useState(false);
 
+    const userData = () => {
+        navigation.navigate('userData');
+    }
 
     const firstQuiz = () => {
         setTimeout(() => {
@@ -39,7 +42,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 
                 {showComponent && (
                     
-                    <ConfirmDialog visible={showComponent} yesButton={firstQuiz} noButton={declineDialog}/>
+                    <ConfirmDialog question={"Deseja iniciar um tratamento?"} visible={showComponent} yesButton={firstQuiz} noButton={declineDialog}/>
                      
                 )}
                 <View>
@@ -48,7 +51,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
                         <Text >INICIAR ATENDIMENTO</Text>
                         <Icon name='long-arrow-right' size={25} color={'#ffffff7d'}></Icon>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={firstQuiz} style={styles.button}>
+                    <TouchableOpacity onPress={userData} style={styles.button}>
                         <Text >CHECAR ATENDIMENTOS</Text>
                         <Icon name='search' size={25} color={'#ffffff7d'}></Icon>
                     </TouchableOpacity>

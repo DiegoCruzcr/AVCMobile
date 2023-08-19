@@ -4,11 +4,13 @@ import useButtonHook from '../../hooks/useButtonHook';
 import { Text } from 'react-native';
 import styles from './styles';
 import ButtonOption from '../ButtonOption';
+import { grade, gradeTotal } from '../../pages/App';
 
-const ButtonGroup = ({questions, hasNT}) => {
+const ButtonGroup = ({questions, hasNT, gradeIndex}) => {
   const { selectedValues, sum, handleButtonPress } = useButtonHook();
   const [SixQuestions, setSixQuestions] = useState(false);
   const [lastIndex, setLastIndex] = useState(null);
+
   useEffect(() => {
     if (questions.length > 4) {
       setSixQuestions(true);
@@ -16,6 +18,8 @@ const ButtonGroup = ({questions, hasNT}) => {
     setLastIndex(questions.length - 1)
   }, [questions])
   
+  
+
   return (
     <View style={styles.container}>
         <View style={styles.buttonRow}>
@@ -27,13 +31,13 @@ const ButtonGroup = ({questions, hasNT}) => {
               key={index}
               title={question}
               number={index}
-              onPress={() => handleButtonPress(index)}
+              onPress={() => handleButtonPress(index, gradeIndex)}
             />
           ))}
         </View>
-      <View style={styles.buttonSum}>
-        <Text style={styles.buttonSum}>Sum: {sum}</Text>
-      </View>
+        <View>
+          <Text style={styles.selectedValue}>Valor Selecionado: {grade[gradeIndex]}</Text>
+        </View>
     </View>
   );
 };

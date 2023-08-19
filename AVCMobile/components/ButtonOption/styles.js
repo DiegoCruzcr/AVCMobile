@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       flexDirection: 'row'
     },
+    buttonPressed: {
+      backgroundColor: '#114654',
+      borderColor: '#249E96',
+      borderWidth: 1,
+    },
     buttonContainerSixRows: {
       alignItems: 'center',
       paddingVertical: 5,

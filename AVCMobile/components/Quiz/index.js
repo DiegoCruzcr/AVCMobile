@@ -4,11 +4,11 @@ import { View, Text } from "react-native";
 import ButtonGroup from "../ButtonGroup";
 
 
-const Quiz = ({hint, questions, hasNT}) => {
+const Quiz = ({gradeIndex, hint, questions, hasNT}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.hint_text}>{hint}</Text>
-            <ButtonGroup questions={questions} hasNT={hasNT}/>
+            <ButtonGroup gradeIndex={gradeIndex} questions={questions} hasNT={hasNT}/>
         </View>
     );
 }
