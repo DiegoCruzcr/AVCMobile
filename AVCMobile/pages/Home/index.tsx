@@ -12,16 +12,12 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
     const userData = () => {
         navigation.navigate('userData');
-    }
-
-    const firstQuiz = () => {
-        setTimeout(() => {
-            navigation.navigate(
-            'quiz', {
-            screen: `${Etapa[0].description}`
-        });
         setShowComponent(false);
-    }, 300)
+    }
+    
+
+    const relatorios = () => {
+        navigation.navigate('userBD');
     }
 
     const quizDialog = () => {
@@ -42,7 +38,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 
                 {showComponent && (
                     
-                    <ConfirmDialog question={"Deseja iniciar um tratamento?"} visible={showComponent} yesButton={firstQuiz} noButton={declineDialog}/>
+                    <ConfirmDialog question={"Deseja iniciar um tratamento?"} visible={showComponent} yesButton={userData} noButton={declineDialog}/>
                      
                 )}
                 <View>
@@ -51,7 +47,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
                         <Text >INICIAR ATENDIMENTO</Text>
                         <Icon name='long-arrow-right' size={25} color={'#ffffff7d'}></Icon>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={userData} style={styles.button}>
+                    <TouchableOpacity onPress={relatorios} style={styles.button}>
                         <Text >CHECAR ATENDIMENTOS</Text>
                         <Icon name='search' size={25} color={'#ffffff7d'}></Icon>
                     </TouchableOpacity>

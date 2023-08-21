@@ -8,6 +8,7 @@ import Home from './Home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ConfirmData from './ConfirmData';
 import UserData from './UserData';
+import CheckUsers from './CheckUsers';
 
 
 const Drawer = createDrawerNavigator();
@@ -27,6 +28,11 @@ function App() {
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='confirmData' component={ConfirmData}
               options={{ headerShown: false }}></Stack.Screen>
+            <Stack.Screen name='userBD' component={CheckUsers}
+             options={{ headerShown: true, headerTitle: "Relatórios", headerStyle: {
+              backgroundColor: '#24464F',
+            },
+            headerTintColor: '#fff', }}></Stack.Screen>
             <Stack.Screen name='userData' component={UserData}
               options={{ headerShown: true, headerTitle: "Dados do Usuário", headerStyle: {
                 backgroundColor: '#24464F',
@@ -57,7 +63,7 @@ function QuizPage() {
         pages.Etapas.map((etapa, index) => (
           <Drawer.Screen
             key={index}
-            name={Etapa[index].description}
+            name={Etapa[index].description }
             component={etapa}
             options={{
               headerTitleStyle: {

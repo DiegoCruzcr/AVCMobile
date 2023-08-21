@@ -33,7 +33,19 @@ const styles = StyleSheet.create ({
         padding: 13,
         borderRadius: 10,
         marginTop: 10,
-    }
+    },
+    button_next: {
+        backgroundColor: '#249E96',
+        height: 40,
+        justifyContent: "center",
+        borderRadius: 2
+      },
+      nextButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },
 })
 
 export default styles;
