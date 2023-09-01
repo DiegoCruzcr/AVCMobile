@@ -8,7 +8,8 @@ import Home from './Home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ConfirmData from './ConfirmData';
 import UserData from './UserData';
-import CheckUsers from './CheckUsers';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 
 const Drawer = createDrawerNavigator();
@@ -19,6 +20,7 @@ export const grade: (number | null)[] = Array.from({ length: 15 }, () => null);
 
 function App() {
   return (
+    <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName='home'>
@@ -28,11 +30,6 @@ function App() {
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='confirmData' component={ConfirmData}
               options={{ headerShown: false }}></Stack.Screen>
-            <Stack.Screen name='userBD' component={CheckUsers}
-             options={{ headerShown: true, headerTitle: "Relatórios", headerStyle: {
-              backgroundColor: '#24464F',
-            },
-            headerTintColor: '#fff', }}></Stack.Screen>
             <Stack.Screen name='userData' component={UserData}
               options={{ headerShown: true, headerTitle: "Dados do Usuário", headerStyle: {
                 backgroundColor: '#24464F',
@@ -40,6 +37,7 @@ function App() {
               headerTintColor: '#fff', }}></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
+    </Provider>
   );
 }
 

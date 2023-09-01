@@ -16,10 +16,6 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
     }
     
 
-    const relatorios = () => {
-        navigation.navigate('userBD');
-    }
-
     const quizDialog = () => {
         setShowComponent(true);
     }
@@ -47,11 +43,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
                         <Text >INICIAR ATENDIMENTO</Text>
                         <Icon name='long-arrow-right' size={25} color={'#ffffff7d'}></Icon>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={relatorios} style={styles.button}>
-                        <Text >CHECAR ATENDIMENTOS</Text>
-                        <Icon name='search' size={25} color={'#ffffff7d'}></Icon>
-                    </TouchableOpacity>
-                   
+                    
                 </View>
 
                 

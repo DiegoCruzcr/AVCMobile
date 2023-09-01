@@ -8,7 +8,8 @@ const styles = StyleSheet.create ({
         backgroundColor: '#24464F' 
     },
     inputContainer: {
-        margin: 20,
+        marginHorizontal: 20,
+        marginVertical: 15,
     },
     inputContainerData: {
         flexDirection: 'row',

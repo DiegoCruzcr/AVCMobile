@@ -7,8 +7,9 @@ import { useState } from "react";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import { grade } from "../App";
 import { Dialog } from "react-native-elements";
-import { Pacientes } from "../UserData/data";
+// import { Pacientes } from "../UserData/types";
 import { gradeTotal } from "../ConfirmData/calculaNota";
+import { useDispatch } from "react-redux";
 
 
 export const Etapas = Etapa.map((etapa, index) => {
@@ -26,12 +27,78 @@ export const Etapas = Etapa.map((etapa, index) => {
     const declineDialog = () => {
         setShowComponent(false);
     }
+    const dispatch = useDispatch();
 
     const finishQuiz = () => {
       navigation.navigate("confirmData");
       setShowComponent(false);
-      const lastPacient = Pacientes.length - 1;
-      Pacientes[lastPacient].nota = gradeTotal;
+      dispatch({
+        type: "user/notas",
+        nota: gradeTotal,
+        quiz: [
+          {
+              stepNumber: 1,
+              degree: grade[0]
+          },
+          {
+              stepNumber: 1.1,
+              degree: grade[1]
+          },
+          {
+              stepNumber: 1.2,
+              degree: grade[2]
+          },
+          {
+              stepNumber: 2,
+              degree: grade[3]
+          },
+          {
+              stepNumber: 3,
+              degree: grade[4]
+          },
+          {
+              stepNumber: 4,
+              degree: grade[5]
+          },
+          {
+              stepNumber: 5,
+              degree: grade[6]
+          },
+          {
+              stepNumber: 5.1,
+              degree: grade[7]
+          },
+          {
+              stepNumber: 6,
+              degree: grade[8]
+          },
+          {
+              stepNumber: 6.1,
+              degree: grade[9]
+          },
+          {
+              stepNumber: 7,
+              degree: grade[10]
+          },
+          {
+              stepNumber: 8,
+              degree: grade[11]
+          },
+          {
+              stepNumber: 9,
+              degree: grade[12]
+          },
+          {
+              stepNumber: 10,
+              degree: grade[13]
+          },
+          {
+              stepNumber: 11,
+              degree: grade[14]
+          }
+      ],
+
+      })
     }
 
     const nextPage = () => {

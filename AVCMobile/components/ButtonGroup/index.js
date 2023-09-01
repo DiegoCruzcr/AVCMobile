@@ -7,9 +7,10 @@ import ButtonOption from '../ButtonOption';
 import { grade, gradeTotal } from '../../pages/App';
 
 const ButtonGroup = ({questions, hasNT, gradeIndex}) => {
-  const { selectedValues, sum, handleButtonPress } = useButtonHook();
+  const { selectedValues, sum, handleButtonPress, isPressed } = useButtonHook();
   const [SixQuestions, setSixQuestions] = useState(false);
   const [lastIndex, setLastIndex] = useState(null);
+  
 
   useEffect(() => {
     if (questions.length > 4) {
@@ -25,6 +26,7 @@ const ButtonGroup = ({questions, hasNT, gradeIndex}) => {
         <View style={styles.buttonRow}>
           {questions.map((question, index) => (
             <ButtonOption 
+              isPressed={isPressed}
               lastIndex={lastIndex}
               hasNT={hasNT}
               questions={SixQuestions}
@@ -34,9 +36,6 @@ const ButtonGroup = ({questions, hasNT, gradeIndex}) => {
               onPress={() => handleButtonPress(index, gradeIndex)}
             />
           ))}
-        </View>
-        <View>
-          <Text style={styles.selectedValue}>Valor Selecionado: {grade[gradeIndex]}</Text>
         </View>
     </View>
   );
