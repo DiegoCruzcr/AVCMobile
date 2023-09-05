@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import useButtonHook from '../../hooks/useButtonHook';
-import { Text } from 'react-native';
 import styles from './styles';
 import ButtonOption from '../ButtonOption';
-import { grade, gradeTotal } from '../../pages/App';
 
 const ButtonGroup = ({questions, hasNT, gradeIndex}) => {
   const { selectedValues, sum, handleButtonPress, isPressed } = useButtonHook();

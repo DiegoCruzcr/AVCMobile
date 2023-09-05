@@ -9,67 +9,67 @@ const initialState = {
     cpf: '',
     quiz: [
         {
-            stepNumber: 1,
-            degree: 0
+            degree: 0,
+            step_number: 1,
         },
         {
-            stepNumber: 1.1,
-            degree: 0
+            degree: 0,
+            step_number: 1.1,
         },
         {
-            stepNumber: 1.2,
-            degree: 0
+            degree: 0,
+            step_number: 1.2,
         },
         {
-            stepNumber: 2,
-            degree: 0
+            degree: 0,
+            step_number: 2,
         },
         {
-            stepNumber: 3,
-            degree: 0
+            degree: 0,
+            step_number: 3,
         },
         {
-            stepNumber: 4,
-            degree: 0
+            degree: 0,
+            step_number: 4,
         },
         {
-            stepNumber: 5,
-            degree: 0
+            degree: 0,
+            step_number: 5,
         },
         {
-            stepNumber: 5.1,
-            degree: 0
+            degree: 0,
+            step_number: 5.1,
         },
         {
-            stepNumber: 6,
-            degree: 0
+            degree: 0,
+            step_number: 6,
         },
         {
-            stepNumber: 6.1,
-            degree: 0
+            degree: 0,
+            step_number: 6.1,
         },
         {
-            stepNumber: 7,
-            degree: 0
+            degree: 0,
+            step_number: 7,
         },
         {
-            stepNumber: 8,
-            degree: 0
+            degree: 0,
+            step_number: 8,
         },
         {
-            stepNumber: 9,
-            degree: 0
+            degree: 0,
+            step_number: 9,
         },
         {
-            stepNumber: 10,
-            degree: 0
+            degree: 0,
+            step_number: 10,
         },
         {
-            stepNumber: 11,
-            degree: 0
+            degree: 0,
+            step_number: 11,
         }
     ],
-    nota: 22,
+    nota: 0,
     idPaciente: null,
     aiAnalysis: '85% Avc',
 } as unknown as PacienteData;
@@ -92,6 +92,8 @@ const initialState = {
                     nota: action.nota,
                     quiz: action.quiz
                 }
+            case UserActionTypes.RESET:
+                return initialState;    
             default:
                 return state;
         }        

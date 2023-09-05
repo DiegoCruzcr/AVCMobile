@@ -10,6 +10,8 @@ import ConfirmData from './ConfirmData';
 import UserData from './UserData';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import { LoadPage } from './LoadPage';
+import FinishPage from './FinishPage';
 
 
 const Drawer = createDrawerNavigator();
@@ -29,6 +31,10 @@ function App() {
             <Stack.Screen name='quiz' component={QuizPage}
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='confirmData' component={ConfirmData}
+              options={{ headerShown: false }}></Stack.Screen>
+            <Stack.Screen name='loadPage' component={LoadPage}
+              options={{ headerShown: false }}></Stack.Screen>
+            <Stack.Screen name='finishPage' component={FinishPage}
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='userData' component={UserData}
               options={{ headerShown: true, headerTitle: "Dados do Usuário", headerStyle: {
@@ -51,7 +57,7 @@ function QuizPage() {
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontFamily: 'Roboto-Bold',
           fontSize: 20,
         },
         drawerActiveTintColor: "#fff",
@@ -65,7 +71,8 @@ function QuizPage() {
             component={etapa}
             options={{
               headerTitleStyle: {
-                fontSize: 16
+                fontSize: 16,
+                fontFamily: 'Roboto-Bold',
               }
             }} ></Drawer.Screen>
         ))

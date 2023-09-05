@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     numberContainer: {
       position: 'absolute',
-      fontFamily: 'Inter',
+      fontFamily: 'Roboto-Medium',
       fontWeight: 'bold',
       textAlign: 'center',
       left: 15,
@@ -38,12 +38,11 @@ const styles = StyleSheet.create({
     numberText: {
       textAlign: 'center',
       color: 'white',
-      fontWeight: 'bold',
-      
+      fontFamily: 'Roboto-bold',
     },
     buttonText: {
       color: 'white',
-      fontWeight: 'bold',
+      fontFamily: 'Roboto-bold',
       paddingRight: 15,
     },
    

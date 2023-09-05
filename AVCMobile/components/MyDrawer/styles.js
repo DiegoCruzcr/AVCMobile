@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     },
     drawerTitle: {
         fontSize: 32,
+        fontFamily: 'Roboto-Bold',
         color: '#fff',
         fontWeight: 'bold',
         borderBottomColor: '#fff',

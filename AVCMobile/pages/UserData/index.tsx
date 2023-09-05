@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import React, { useState } from "react";
 import DatePicker from 'react-native-date-picker'
@@ -17,6 +17,7 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
     const [cpf, setCpf] = useState('');
     const [comment, setComment] = useState('');
     const [idPaciente, setIdPaciente] = useState(Math.floor(Math.random() * 1000));
+   
 
     const formatDate = (date: { toLocaleDateString: (arg0: string, arg1: { year: string; month: string; day: string; }) => any; }) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -38,14 +39,38 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
         
     }, 300);
 
-        // navigation.navigate('confirmData')
         setOpen(false);
     }
+
+    const formatCPF = (inputCPF: string) => {
+        const numericCPF = inputCPF.replace(/\D/g, '');
+    
+        let formattedCPF = '';
+        for (let i = 0; i < numericCPF.length; i++) {
+          formattedCPF += numericCPF[i];
+          if (i === 2 || i === 5) {
+            formattedCPF += '.';
+          } else if (i === 8) {
+            formattedCPF += '-';
+          }
+        }
+    
+        formattedCPF = formattedCPF.slice(0, 14);
+    
+        return formattedCPF;
+      };
+    
+      const handleCPFChange = (text: string) => {
+        const formattedText = formatCPF(text);
+        setCpf(formattedText);
+      };
+
+      
     
     return (
         <>
-        
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
+    
             <View style={styles.inputContainer}>
                 <View>
                     <Text>Nome do Paciente</Text>
@@ -64,7 +89,7 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
                     style={styles.input}
                     placeholder="Ex: 999.999.999-99"
                     value={cpf}
-                    onChangeText={cpf => setCpf(cpf)}
+                    onChangeText={handleCPFChange}
                     />
                 </View>
             </View>
@@ -80,11 +105,11 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
                     mode="date" 
                     date={date} 
                     onConfirm={(date) => {
-                    setOpen(false)
+                        setOpen(false)
                     setDate(date)
                     }}
                     onCancel={() => {
-                    setOpen(false)
+                        setOpen(false)
                     }}/>
                 
             </View>
@@ -121,17 +146,18 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
                     <Text>Comentários</Text>
                     <TextInput 
                     style={styles.input} 
-                    placeholder="Ex: O paciente toma regularmente X remédio" 
+                    placeholder=" Ex: O paciente toma regularmente X remédio" 
                     multiline 
                     numberOfLines={8}
                     editable
                     value={comment}
-
+                    
                     onChangeText={comment => setComment(comment)}
                     />
                 </View>
             </View>
-        </View>
+                    
+        </ScrollView>
             <TouchableOpacity onPress={firstQuiz} style={styles.button_next}>
                 <Text style={styles.nextButtonText}>INICIAR</Text>
             </TouchableOpacity>   

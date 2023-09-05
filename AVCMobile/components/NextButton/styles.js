@@ -1,12 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    next_button: {
-        backgroundColor: '#249E96',
-        alignItems: 'right',
-        justifyContent: 'flex-end',
-        borderRadius: 8, 
-        },
+    
     nextButton: {
         backgroundColor: '#249E96',
         left: 145,
@@ -17,6 +12,7 @@ const styles = StyleSheet.create({
         },
     nextButtonText: {
         color: '#fff',
+        fontFamily: 'Roboto-Medium',
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',

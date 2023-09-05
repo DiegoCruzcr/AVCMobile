@@ -5,16 +5,11 @@ import {
 const styles = StyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: '#24464F' 
+        backgroundColor: '#24464F',
     },
     inputContainer: {
         marginHorizontal: 20,
         marginVertical: 15,
-    },
-    inputContainerData: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 20,
     },
     input: {
         backgroundColor: '#249E96', 
@@ -22,7 +17,8 @@ const styles = StyleSheet.create ({
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        marginTop: 10
+        marginTop: 10,
+        fontFamily: 'Roboto-light',
     },
     inputData: {
         flexDirection: 'row',
@@ -44,7 +40,7 @@ const styles = StyleSheet.create ({
       nextButtonText: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Roboto-Bold',
         textAlign: 'center',
       },
 })

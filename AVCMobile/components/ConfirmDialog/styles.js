@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+        fontFamily: 'Roboto-Medium',
         color: '#fff',
         textAlign: "center",
         marginBottom: 30
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 15,
+        fontFamily: 'Roboto-Medium',
         color: '#fff',
     },
 })

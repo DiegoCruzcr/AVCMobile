@@ -1,4 +1,3 @@
-// hooks/useButtonHook.js
 import { useState } from 'react';
 import { grade } from '../pages/App';
 
@@ -13,7 +12,7 @@ const useButtonHook = () => {
       value = 0;
     }
     setSelectedValue(value);
-    setSum(value); // Set the sum to the selected value
+    setSum(value); 
     grade[gradeIndex] = value;
   };
 
