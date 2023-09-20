@@ -6,6 +6,7 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { resetPaciente } from '../../redux/user/actions';
 import { useDispatch } from 'react-redux';
+import { grade } from '../App';
 
 
 export const FinishPage = ({ navigation }: { navigation: NavigationProp<any> }) => {
@@ -15,6 +16,9 @@ export const FinishPage = ({ navigation }: { navigation: NavigationProp<any> }) 
     const returnHome = () => {
         navigation.navigate('home')
         dispatch(resetPaciente())
+        for (let i = 0; i < grade.length; i++) {
+            grade[i] = null;
+        }
     }
     return (
         <LinearGradient style={styles.container} colors={['#24464F', '#1AAEA2']} >

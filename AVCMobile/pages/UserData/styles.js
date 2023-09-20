@@ -10,10 +10,11 @@ const styles = StyleSheet.create ({
     inputContainer: {
         marginHorizontal: 20,
         marginVertical: 15,
+        
     },
     input: {
-        backgroundColor: '#249E96', 
-        borderColor: '#000',
+        backgroundColor: 'rgba(176,176,176, .65)', 
+        borderColor: '#fff',
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
@@ -24,9 +25,9 @@ const styles = StyleSheet.create ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "space-between",
-        backgroundColor: '#249E96', 
-        borderColor: '#000',
-        borderWidth: 1,
+        backgroundColor: 'rgba(176,176,176, .65)', 
+        borderColor: '#fff',
+        borderWidth: .5,
         padding: 13,
         borderRadius: 10,
         marginTop: 10,
@@ -43,6 +44,20 @@ const styles = StyleSheet.create ({
         fontFamily: 'Roboto-Bold',
         textAlign: 'center',
       },
+      titleText : {
+        color: '#fff',
+        fontSize: 20,
+        fontFamily: 'Roboto-Medium',
+      },
+      required: {
+        color: 'red',
+        fontSize: 11,
+        fontFamily: 'Roboto-Light',
+      },
+      textWrapper: {
+        flexDirection: 'row',
+        alignItems: 'flex-start', // Alinhar ao topo
+      }
 })
 
 export default styles;

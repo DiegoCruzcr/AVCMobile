@@ -72,6 +72,8 @@ const initialState = {
     nota: 0,
     idPaciente: null,
     aiAnalysis: '85% Avc',
+    reason: 'AVC',
+    checkIn: '',
 } as unknown as PacienteData;
 
     const userReducer = (state = initialState, action: any) => {
@@ -84,7 +86,8 @@ const initialState = {
                     cpf: action.cpf,
                     comentario: action.comentario,
                     sexo: action.sexo,
-                    idPaciente: action.idPaciente
+                    idPaciente: action.idPaciente,
+                    checkIn: action.checkIn
                 }
             case UserActionTypes.NOTAS:
                 return {

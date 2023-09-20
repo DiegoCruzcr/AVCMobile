@@ -106,7 +106,7 @@ export const Etapas = Etapa.map((etapa, index) => {
     }
 
     const nextPage = () => {
-      if (Etapa[index + 1] == null) {
+      if (Etapa[index + 1] == null) {  
         const hasNull = grade.some(grade => grade === null);
         if (hasNull) {
           toggleDialog();

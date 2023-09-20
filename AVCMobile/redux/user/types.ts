@@ -7,8 +7,10 @@ export interface PacienteData {
     cpf: string | null,
     quiz: Array<{stepNumber: number | null; degree: number}>;
     nota: number | null,
-    idPaciente: number | null,
-    aiAnalysis: string | null
+    idPaciente: string | null,
+    aiAnalysis: string | null,
+    reason: string,
+    checkIn: string 
 }
 
 

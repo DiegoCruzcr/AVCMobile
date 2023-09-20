@@ -12,15 +12,16 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
 
     
 
-    const { nome, cpf, dataNascimento, sexo, comentario, nota, quiz } = useSelector((state: PacienteData) => state.userReducer)
+    const { nome, cpf, checkIn, sexo, comentario, nota, quiz, idPaciente } = useSelector((state: PacienteData) => state.userReducer)
 
     const postData = {
-        patient_id: 'patient-a719d189-8025-4830-888e-b44cf2b5c82c',
+        patient_id: idPaciente,
         quiz: quiz,
         ai_analysis: '98% avc',
         nihss_score: nota,
-        check_in: dataNascimento,
-        historic: comentario
+        check_in: checkIn,
+        historic: 'nenhum',
+        reason: 'AVC'
     } 
 
     async function postApi() {
@@ -33,6 +34,8 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
     }
 
     const finalizaAtendimento = () => {
+        console.log(quiz);
+        
         navigation.navigate('loadPage')
         postApi().then(() => {
             navigation.navigate('finishPage')
@@ -48,6 +51,7 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
                 </View>
                 <View style={styles.containerText}>
                     <Text style={styles.text}>{nome}</Text>
+                    <Text style={styles.text}>{checkIn}</Text>
                     <Text style={styles.text}>{cpf}</Text>
                     <Text style={styles.text}>{sexo === 1 ? 'Masculino' : sexo === 2 ? 'Mulher' : ''}</Text>
                     <Text style={styles.text}>Score NIHSS: {nota}</Text>
