@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import store from '../redux/store';
 import { LoadPage } from './LoadPage';
 import FinishPage from './FinishPage';
+import ErrorPage from './ErrorPage';
 
 
 const Drawer = createDrawerNavigator();
@@ -35,6 +36,8 @@ function App() {
             <Stack.Screen name='loadPage' component={LoadPage}
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='finishPage' component={FinishPage}
+              options={{ headerShown: false }}></Stack.Screen>
+            <Stack.Screen name='errorPage' component={ErrorPage}
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='userData' component={UserData}
               options={{ headerShown: true, headerTitle: "Dados do Usuário", headerStyle: {

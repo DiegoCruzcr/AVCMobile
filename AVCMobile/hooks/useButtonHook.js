@@ -11,7 +11,7 @@ const useButtonHook = () => {
     if (value == 5) {
       value = 0;
     }
-    if (gradeIndex == 10 || gradeIndex == 13 && value == 3) {
+    if (gradeIndex == 10 && value == 3 || gradeIndex == 13 && value == 3) {
       value = 0;
     }
     setSelectedValue(value);

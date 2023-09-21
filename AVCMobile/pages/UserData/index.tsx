@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { attDadosPaciente } from "../../redux/user/actions";
 import { PacienteData } from "../../redux/user/types";
 import axios from "axios";
+import { attErrorInfo } from "../../redux/errorInfo/actions";
 
 const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
     const [date, setDate] = useState(new Date())
@@ -24,6 +25,7 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
     const [sexCheck, setSexCheck] = useState(false);    
     const [cpfCheck, setCpfCheck] = useState(false);    
     const [dataCheck, setDataCheck] = useState(false);   
+    const [infoError, setInfoError] = useState({code: 404, description: 'Ocorreu um erro inesperado.'})
    
 
     
@@ -39,7 +41,26 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
     const dispatch = useDispatch();
 
-    
+    const setErrorInfo = (statusCode : number) => {
+        switch (statusCode) {
+            case 400:
+              setInfoError({code: 400, description: 'Requisição inválida.'});
+              break;
+            case 401:
+              setInfoError({code: 401, description: 'Não autorizado. Faça login.'});
+              break;
+            case 403:
+              setInfoError({code: 403, description: 'Acesso proibido.'});
+              break;
+            case 404:
+              setInfoError({code: 404, description: 'Recurso não encontrado.'});
+              break;
+            default:
+              setInfoError({code: 500, description: 'Ocorreu um erro inesperado.'});
+              break;
+          }
+          dispatch(attErrorInfo(infoError.code, infoError.description))
+    }
 
     async function postApi() {
         try {
@@ -48,8 +69,13 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
             console.log(response.data.patientId);
             
             return response.data.patientId;         
-        } catch(error) {
-            console.error(error + 'aaaa');
+        } catch(error: any) {
+            if (error.response) {
+                const statusCode = error.response.status;
+                console.log(statusCode);
+                setErrorInfo(statusCode)
+                navigation.navigate('errorPage')
+            }
         }
     }
     
@@ -59,10 +85,6 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
             Alert.alert('Preencha todos os campos obrigatórios!')
         }
         else {
-            console.log(selectedSex);
-            console.log(nome);
-            console.log(cpf);
-            console.log(date);
             
             navigation.navigate(
                 'quiz', {
@@ -73,8 +95,13 @@ const UserData = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 dispatch(attDadosPaciente(nome, cpf, formatDate(date), selectedSex, comment, idPaciente, formatDate(checkIn)))
                 setOpen(false);
                 
-            } catch (error) {
-                
+            } catch(error: any) {
+                if (error.response) {
+                    const statusCode = error.response.status;
+                    console.log(statusCode);
+                    setErrorInfo(statusCode)
+                    setTimeout(() => navigation.navigate('errorPage'), 500)
+                }
             }
         }
     }

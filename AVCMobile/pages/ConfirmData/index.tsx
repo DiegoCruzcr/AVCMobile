@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PacienteData } from '../../redux/user/types';
 import axios from 'axios';
+import { attErrorInfo } from '../../redux/errorInfo/actions';
 
 
 export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
     
-
-    const { nome, cpf, checkIn, sexo, comentario, nota, quiz, idPaciente } = useSelector((state: PacienteData) => state.userReducer)
+    const [infoError, setInfoError] = useState({code: 404, description: 'Ocorreu um erro inesperado.'})
+    const { nome, cpf, checkIn, sexo, comentario, nota, quiz, idPaciente } = useSelector((state: any) => state.user)
 
     const postData = {
         patient_id: idPaciente,
@@ -24,12 +25,40 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
         reason: 'AVC'
     } 
 
+    const dispatch = useDispatch();
+
+    const setErrorInfo = (statusCode : number) => {
+        switch (statusCode) {
+            case 400:
+              setInfoError({code: 400, description: 'Requisição inválida.'});
+              break;
+            case 401:
+              setInfoError({code: 401, description: 'Não autorizado. Faça login.'});
+              break;
+            case 403:
+              setInfoError({code: 403, description: 'Acesso proibido.'});
+              break;
+            case 404:
+              setInfoError({code: 404, description: 'Recurso não encontrado.'});
+              break;
+            default:
+              setInfoError({code: 500, description: 'Ocorreu um erro inesperado.'});
+              break;
+          }
+          dispatch(attErrorInfo(infoError.code, infoError.description))
+    }
+
     async function postApi() {
         try {
             const response = await axios.post('https://f1gl44wn74.execute-api.us-east-1.amazonaws.com/Prod/report', postData);
             console.log(response);
-        } catch (error) {
-            console.error(error);
+        } catch(error: any) {
+            if (error.response) {
+                const statusCode = error.response.status;
+                console.log(statusCode);
+                setErrorInfo(statusCode)
+                setTimeout(() => navigation.navigate('errorPage'), 500)
+            }
         }
     }
 
@@ -68,3 +97,4 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
 }
 
 export default ConfirmData;
+

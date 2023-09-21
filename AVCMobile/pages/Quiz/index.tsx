@@ -1,9 +1,9 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { BackHandler, Text, TouchableOpacity, View } from "react-native";
 import Etapa from "./const";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import Quiz from "../../components/Quiz";
 import styles from '../../components/Quiz/styles';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import { grade } from "../App";
 import { Dialog } from "react-native-elements";
@@ -11,7 +11,11 @@ import { useDispatch } from "react-redux";
 
 
 export const Etapas = Etapa.map((etapa, index) => {
+
   return ({ navigation }: { navigation: NavigationProp<any> }) => {
+
+
+
     const [showComponent, setShowComponent] = useState(false);
     const [visible, setVisible] = useState(false)
 
