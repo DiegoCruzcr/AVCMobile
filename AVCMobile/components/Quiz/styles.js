@@ -5,14 +5,13 @@ const styles = StyleSheet.create({
       backgroundColor: '#249E96',
       height: 40,
       justifyContent: "center",
-      borderRadius: 2
+      width: '100%'
     },
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
       padding: 20,
-      backgroundColor: '#24464F'
+      backgroundColor: '#24464F',
+      
     },
     hint_text: {
       fontFamily: 'Roboto-Medium',
@@ -28,6 +27,9 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'center',
     },
+    scrollViewGreen: {
+      backgroundColor: '#24464F',
+    }
   });
 
 export default styles;

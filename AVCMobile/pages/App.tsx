@@ -13,6 +13,7 @@ import store from '../redux/store';
 import { LoadPage } from './LoadPage';
 import FinishPage from './FinishPage';
 import ErrorPage from './ErrorPage';
+import ComplementUserData from './ComplementUserData';
 
 
 const Drawer = createDrawerNavigator();
@@ -40,7 +41,12 @@ function App() {
             <Stack.Screen name='errorPage' component={ErrorPage}
               options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='userData' component={UserData}
-              options={{ headerShown: true, headerTitle: "Dados do Usuário", headerStyle: {
+              options={{ headerShown: true, headerTitle: "Dados do Paciente I", headerStyle: {
+                backgroundColor: '#24464F',
+              },
+              headerTintColor: '#fff', }}></Stack.Screen>
+            <Stack.Screen name='complementUserData' component={ComplementUserData}
+              options={{ headerShown: true, headerTitle: "Dados do Paciente II", headerStyle: {
                 backgroundColor: '#24464F',
               },
               headerTintColor: '#fff', }}></Stack.Screen>

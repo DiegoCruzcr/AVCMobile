@@ -24,7 +24,7 @@ const ButtonOption = ({ title, number, questions, hasNT, lastIndex, onPress, isP
   }, [number, questions, hasNT]);
 
   return (
-    <TouchableOpacity style={[questions === false ? styles.buttonContainer : styles.buttonContainerSixRows, isPressed === number && styles.buttonPressed]} onPress={() => toggleButton()}>
+    <TouchableOpacity style={[styles.buttonContainer, isPressed === number && styles.buttonPressed]} onPress={() => toggleButton()}>
       <View style={styles.numberContainer}>
         <Text style={[styles.numberText, hasNT ? {fontSize: 25} : {fontSize:30}]}>{numberText}</Text>
       </View>

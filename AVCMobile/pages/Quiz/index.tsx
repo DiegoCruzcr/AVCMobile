@@ -1,4 +1,4 @@
-import { BackHandler, Text, TouchableOpacity, View } from "react-native";
+import { BackHandler, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Etapa from "./const";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import Quiz from "../../components/Quiz";
@@ -17,10 +17,25 @@ export const Etapas = Etapa.map((etapa, index) => {
 
 
     const [showComponent, setShowComponent] = useState(false);
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false);
+    const [nullIndexes, setNullIndexes] = useState<number[]>([]);
 
     const toggleDialog = () => {
       setVisible(!visible);
+      const checkNull = () => {
+        const nullIndexes: number[] = [];
+
+        for (let i = 0; i < grade.length; i++) {
+          if (grade[i] === null) {
+            nullIndexes.push(i);
+          }
+        }
+
+        return nullIndexes;
+      }
+      const nullIndexes = checkNull();
+      console.log(nullIndexes);
+      setNullIndexes(nullIndexes);
     }
     const quizDialog = () => {
       setShowComponent(true);
@@ -116,7 +131,6 @@ export const Etapas = Etapa.map((etapa, index) => {
           toggleDialog();
         }
         else {
-          
           quizDialog();
         }
       }
@@ -125,21 +139,45 @@ export const Etapas = Etapa.map((etapa, index) => {
       }
     }
 
+    const prevPage = () => {
+      if (Etapa[index - 1] == null) {  
+        navigation.navigate('complementUserData')
+      }
+      else {
+        navigation.navigate(`${Etapa[index - 1].description}`);
+      }
+    }
+
     return (
       <>
-        <Quiz gradeIndex={index} key={index} hint={etapa.hint} questions={etapa.questions} hasNT={etapa.hasNT} />
-        <View>
-          {showComponent && (
-            <ConfirmDialog yesButton={finishQuiz} question={"Deseja finalizar o atendimento?"} visible={showComponent} noButton={declineDialog}/>
-          )}
-        </View>
-        <TouchableOpacity onPress={nextPage} style={styles.button_next}>
-          <Text style={styles.buttonText}>{Etapa[index + 1] ? "PRÓXIMO" : "FINALIZAR"}</Text>
-        </TouchableOpacity>
-        <Dialog isVisible={visible} onBackdropPress={toggleDialog} overlayStyle={{ backgroundColor: '#249E9F', alignItems: 'center', height: 185, width: 300, justifyContent: 'center' }}>
-              <Dialog.Title titleStyle={{color: '#fff', fontFamily: 'Roboto-Bold', textAlign: 'center', fontSize: 24}} title="Atenção!!"/>
-              <Text style={{color: '#fff', fontFamily: 'Roboto-Light'}}>Ainda há questões em branco!</Text>
-        </Dialog>
+        
+          <Quiz gradeIndex={index} key={index} hint={etapa.hint} questions={etapa.questions} hasNT={etapa.hasNT} />
+          <View>
+            {showComponent && (
+              <ConfirmDialog yesButton={finishQuiz} question={"Deseja finalizar o atendimento?"} visible={showComponent} noButton={declineDialog}/>
+              )}
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={{width: '50%', borderEndColor: '#fff', borderEndWidth: 1}}>
+              <TouchableOpacity onPress={prevPage} style={styles.button_next}>
+                <Text style={styles.buttonText}>ANTERIOR</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{width: '50%'}}>
+              <TouchableOpacity onPress={nextPage} style={styles.button_next}>
+                <Text style={styles.buttonText}>{Etapa[index + 1] ? "PRÓXIMO" : "FINALIZAR"}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          
+          <Dialog isVisible={visible} onBackdropPress={toggleDialog} overlayStyle={{ backgroundColor: '#249E9F', alignItems: 'center', height: 'auto', width: 300, justifyContent: 'center' }}>
+                <Dialog.Title titleStyle={{color: '#fff', fontFamily: 'Roboto-Bold', textAlign: 'center', fontSize: 24}} title="Atenção!!"/>
+                <Text style={{color: '#fff', fontFamily: 'Roboto-Medium'}}>Ainda há questões em branco!</Text>
+                {nullIndexes.map((question, index) => (
+                  <Text key={index} style={{color: '#fff', fontFamily: 'Roboto-Light'}}>{Etapa[question].description}</Text>
+                ))}
+          </Dialog>
+        
       </>
     )
   }
