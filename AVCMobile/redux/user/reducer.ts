@@ -7,66 +7,67 @@ const initialState = {
     sexo: 1,
     comentario: null,
     cpf: '',
+    lastHealthHour: "",
     quiz: [
         {
-            degree: 0,
             step_number: 1,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 1.1,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 1.2,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 2,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 3,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 4,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 5,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 5.1,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 6,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 6.1,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 7,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 8,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 9,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 10,
+            degree: 0,
         },
         {
-            degree: 0,
             step_number: 11,
+            degree: 0,
         }
     ],
     nota: 0,
@@ -74,6 +75,20 @@ const initialState = {
     aiAnalysis: '85% Avc',
     reason: 'AVC',
     checkIn: '',
+    checkBox: [
+        {
+            stepNumber: 0.2,
+            answer: ''
+        },
+        {
+            stepNumber: 0.3,
+            answer: ''
+        },
+        {
+            stepNumber: 0.4,
+            answer: ''
+        },
+    ]
 } as unknown as PacienteData;
 
     const userReducer = (state = initialState, action: any) => {
@@ -88,6 +103,12 @@ const initialState = {
                     sexo: action.sexo,
                     idPaciente: action.idPaciente,
                     checkIn: action.checkIn
+                }
+            case UserActionTypes.DADOS2:
+                return {
+                    ...state,
+                    lastHealthHour: action.lastHealthHour,
+                    idPaciente: action.idPaciente
                 }
             case UserActionTypes.NOTAS:
                 return {

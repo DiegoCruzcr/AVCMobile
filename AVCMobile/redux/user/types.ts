@@ -10,7 +10,9 @@ export interface PacienteData {
     idPaciente: string | null,
     aiAnalysis: string | null,
     reason: string,
-    checkIn: string 
+    checkIn: string ,
+    lastHealthHour: String | null,
+    checkBox: Array<{stepNumber: number | null; answer: String}>;
 }
 
 

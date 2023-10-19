@@ -7,7 +7,7 @@ import { CheckBox } from 'react-native-elements'
 import Etapa from "../Quiz/const";
 import { NavigationProp } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { attDadosPaciente } from "../../redux/user/actions";
+import { attDadosPaciente, attDadosPaciente2 } from "../../redux/user/actions";
 import { PacienteData } from "../../redux/user/types";
 import axios from "axios";
 import { attErrorInfo } from "../../redux/errorInfo/actions";
@@ -20,14 +20,6 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
     const [selectedAntiC, setAntiC] = useState(0);
     const [selectedSurgery, setSurgery] = useState(0);
     const [selectedBleeding, setBleeding] = useState(0);
-    const [nome, setNome] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [comment, setComment] = useState('');
-    const [checkIn, setCheckIn] = useState(new Date());
-    const [nomeCheck, setNomeCheck] = useState(false);    
-    const [sexCheck, setSexCheck] = useState(false);    
-    const [cpfCheck, setCpfCheck] = useState(false);    
-    const [dataCheck, setDataCheck] = useState(false);   
     const [infoError, setInfoError] = useState({code: 404, description: 'Ocorreu um erro inesperado.'})
     const [disabled, setDisabled] = useState(true);
     const [disabledBleed, setDisabledBleed] = useState(true);
@@ -45,7 +37,11 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
         'Entre três meses e um ano',
         'Mais do que um ano'
     ]
+
+    const { nome, cpf, sexo, comentario, dataNascimento } = useSelector((state: any) => state.user)
    
+    
+    
 
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
@@ -55,7 +51,37 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
         const minutes = String(date.getMinutes()).padStart(2, '0');
         
         return `${day}/${month}/${year} - ${hours}:${minutes}`;
-      };
+    };
+
+    const apiDate = (date: String) => {
+        const dateWithoutSpaces = date.replace(/\s/g, '');
+        const partes = dateWithoutSpaces.split(/[\/\-:]/);        
+        
+        if (partes.length === 5) {
+          const day = partes[0];
+          const month = partes[1];
+          const year = partes[2];
+          const hours = partes[3];
+          const minutes = partes[4];
+      
+          
+          const dataFormatada = `${year}-${month}-${day} ${hours}:${minutes}:00`;
+      
+          return dataFormatada;
+        } else {
+          return "Formato de data inválido. Use dd/mm/yyyy.";
+        }
+      }
+
+
+    const postData = {
+        name: nome,
+        sex: sexo,
+        commentary: comentario,
+        cpf: cpf,
+        birth_date: dataNascimento,
+        last_health_hour: apiDate(formatDate(date)),
+    } 
 
 
     const dispatch = useDispatch();
@@ -81,22 +107,22 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
           dispatch(attErrorInfo(infoError.code, infoError.description))
     }
 
-    // async function postApi() {
-    //     try {
-    //         const response = await axios.post('https://f1gl44wn74.execute-api.us-east-1.amazonaws.com/Prod/patient', postData);
-    //         console.log(response);
-    //         console.log(response.data.patientId);
+    async function postApi() {
+        try {
+            const response = await axios.post('https://f1gl44wn74.execute-api.us-east-1.amazonaws.com/Prod/patient', postData);
+            console.log(response);
+            console.log(response.data.patientId);
             
-    //         return response.data.patientId;         
-    //     } catch(error: any) {
-    //         if (error.response) {
-    //             const statusCode = error.response.status;
-    //             console.log(statusCode);
-    //             setErrorInfo(statusCode)
-    //             navigation.navigate('errorPage')
-    //         }
-    //     }
-    // }
+            return response.data.patientId;         
+        } catch(error: any) {
+            if (error.response) {
+                const statusCode = error.response.status;
+                console.log(statusCode);
+                setErrorInfo(statusCode)
+                navigation.navigate('errorPage')
+            }
+        }
+    }
     
     const firstQuiz = async () => {  
         navigation.navigate(
@@ -113,62 +139,28 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
         //         'quiz', {
         //         screen: `${Etapa[0].description}`
         //         })
-        //     try {
-        //         const idPaciente = await postApi()
-        //         dispatch(attDadosPaciente(nome, cpf, formatDate(date), selectedSex, comment, idPaciente, formatDate(checkIn)))
-        //         setOpen(false);
+            try {
+                const idPaciente = await postApi()
                 
-        //     } catch(error: any) {
-        //         if (error.response) {
-        //             const statusCode = error.response.status;
-        //             console.log(statusCode);
-        //             setErrorInfo(statusCode)
-        //             setTimeout(() => navigation.navigate('errorPage'), 500)
-        //         }
-        //     }
-        // }
+                dispatch(attDadosPaciente2(idPaciente, apiDate(formatDate(date))))
+                setOpen(false);
+                
+            } catch(error: any) {
+                
+                if (error.response) {
+                    const statusCode = error.response.status;
+                    console.log(statusCode);
+                    setErrorInfo(statusCode)
+                    setTimeout(() => navigation.navigate('errorPage'), 500)
+                }
+            }
+        
     }
 
     
     return (
         <>
         <ScrollView style={styles.container}>
-    
-            {/* <View style={styles.inputContainer}>
-                <View>
-                    <View style={styles.textWrapper}>
-                    <Text style={styles.titleText}>Nome do Paciente</Text>
-                    <Text style={styles.required}>*</Text>
-                    </View>
-                    {nomeCheck && <Text style={styles.required}>Por favor, preencha todos os campos obrigatórios.</Text>}
-                    <TextInput 
-                    style={styles.input}
-                    placeholder="Ex: Eduardo da Silva"
-                    value={nome}
-                    onChangeText={nome => setNome(nome)}
-                    />
-                    
-                </View>
-            </View> */}
-            {/* <View style={styles.inputContainer}>
-                <View>
-                    <View style={styles.textWrapper}>
-                    <Text style={styles.titleText}>CPF</Text>
-                    
-                    </View>
-                    {cpfCheck && 
-                    <View> 
-                        <Text style={styles.required}>Por favor, preencha todos os campos obrigatórios.</Text>  
-                        <Text style={styles.required}>Verifique se o CPF inserido possui 11 dígitos.</Text>
-                    </View>}
-                    <TextInput 
-                    style={styles.input}
-                    placeholder="Ex: 999.999.999-99"
-                    value={cpf}
-                    onChangeText={handleCPFChange}
-                    />
-                </View>
-            </View> */}
             <View style={styles.inputContainer}>
                     <View style={styles.textWrapper}>
                         <Text style={styles.titleText}>Quando o paciente foi visto bem pela ultima vez?</Text>
@@ -306,8 +298,7 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
                     />
                     </View>
                     <View style={styles.containerSurgery}>
-                        <Text style={[disabledBleed ? styles.disabled : {color: '#fff'}]}>Se sim, qual? </Text>
-                        
+                        <Text style={[disabledBleed ? styles.disabled : {color: '#fff'}]}>Se sim, quando? </Text>
                         <Dropdown disabled={disabledBleed} dados={dadosBleeding}/>
                         
                     </View>
