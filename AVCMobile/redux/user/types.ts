@@ -8,11 +8,9 @@ export interface PacienteData {
     quiz: Array<{stepNumber: number | null; degree: number}>;
     nota: number | null,
     idPaciente: string | null,
-    aiAnalysis: string | null,
     reason: string,
-    checkIn: string ,
     lastHealthHour: String | null,
-    checkBox: Array<{stepNumber: number | null; answer: String}>;
+    checkBox: Array<{step_number: String | null; answer: String | null;  is_boolean_check: boolean; boolean_choice: boolean }>;
 }
 
 

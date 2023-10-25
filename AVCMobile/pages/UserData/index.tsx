@@ -4,11 +4,9 @@ import React, { useState } from "react";
 import DatePicker from 'react-native-date-picker'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { CheckBox } from 'react-native-elements'
-import Etapa from "../Quiz/const";
 import { NavigationProp } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { attDadosPaciente } from "../../redux/user/actions";
-import { PacienteData } from "../../redux/user/types";
 import axios from "axios";
 import { attErrorInfo } from "../../redux/errorInfo/actions";
 

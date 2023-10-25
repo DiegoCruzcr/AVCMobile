@@ -10,11 +10,11 @@ export const attDadosPaciente = (nome: string, cpf: string, date: string, select
     checkIn: checkIn       
 })
 
-export const attDadosPaciente2 = (idPaciente: string, lastHealthHour: string) => ({
+export const attDadosPaciente2 = (idPaciente: string, lastHealthHour: string, checkBox: Array<Object>) => ({
     type: UserActionTypes.DADOS2,
     lastHealthHour: lastHealthHour,
-    idPaciente: idPaciente
-          
+    idPaciente: idPaciente,
+    checkBox: checkBox,        
 })
 
 export const attNotasPaciente = (quiz: Array<Object>) => ({

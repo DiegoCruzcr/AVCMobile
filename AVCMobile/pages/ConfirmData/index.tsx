@@ -4,7 +4,6 @@ import { TouchableOpacity, Text, View, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { PacienteData } from '../../redux/user/types';
 import axios from 'axios';
 import { attErrorInfo } from '../../redux/errorInfo/actions';
 
@@ -13,15 +12,13 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
 
     
     const [infoError, setInfoError] = useState({code: 404, description: 'Ocorreu um erro inesperado.'})
-    const { nome, cpf, checkIn, sexo, comentario, nota, quiz, idPaciente } = useSelector((state: any) => state.user)
+    const { nome, sexo, nota, quiz, idPaciente, checkBox } = useSelector((state: any) => state.user)
 
     const postData = {
         patient_id: idPaciente,
         quiz: quiz,
-        ai_analysis: '98% avc',
+        check_box: checkBox,
         nihss_score: nota,
-        check_in: checkIn,
-        historic: 'nenhum',
         reason: 'AVC'
     } 
 
@@ -56,6 +53,10 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
             if (error.response) {
                 const statusCode = error.response.status;
                 console.log(statusCode);
+                console.log(error.response.data);
+                console.log(postData);
+                
+                
                 setErrorInfo(statusCode)
                 setTimeout(() => navigation.navigate('errorPage'), 500)
             }
@@ -79,10 +80,8 @@ export const ConfirmData = ({ navigation }: { navigation: NavigationProp<any> })
                     <Text></Text>
                 </View>
                 <View style={styles.containerText}>
-                    <Text style={styles.text}>{nome}</Text>
-                    <Text style={styles.text}>{checkIn}</Text>
-                    <Text style={styles.text}>{cpf}</Text>
-                    <Text style={styles.text}>{sexo === 1 ? 'Masculino' : sexo === 2 ? 'Mulher' : ''}</Text>
+                    <Text style={styles.text}>Paciente: {nome}</Text>
+                    <Text style={styles.text}>Sexo: {sexo === 1 ? 'Masculino' : sexo === 2 ? 'Feminino' : ''}</Text>
                     <Text style={styles.text}>Score NIHSS: {nota}</Text>
                 </View>
                 <View style={styles.containerButton}>

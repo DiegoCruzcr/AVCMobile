@@ -90,6 +90,4 @@ function QuizPage() {
   );
 };
 
-
-
 export default App;

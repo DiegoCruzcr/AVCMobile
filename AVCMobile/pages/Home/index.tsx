@@ -17,9 +17,6 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
         setShowComponent(false);
     }
     
-    const errorPage = () => {
-        navigation.navigate('errorPage')
-    }
 
     const quizDialog = () => {
         setShowComponent(true);

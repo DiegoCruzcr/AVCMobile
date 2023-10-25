@@ -72,22 +72,32 @@ const initialState = {
     ],
     nota: 0,
     idPaciente: null,
-    aiAnalysis: '85% Avc',
     reason: 'AVC',
-    checkIn: '',
     checkBox: [
         {
-            stepNumber: 0.2,
+            step_number: "0.2",
+            is_boolean_check: true,
+            boolean_choice: null,
             answer: ''
         },
         {
-            stepNumber: 0.3,
+            step_number: "0.3",
+            is_boolean_check: true,
+            boolean_choice: null,
             answer: ''
         },
         {
-            stepNumber: 0.4,
+            step_number: "0.31",
+            is_boolean_check: false,
             answer: ''
         },
+        {
+            step_number: "0.4",
+            is_boolean_check: true,
+            boolean_choice: null,
+            answer: ''
+        },
+        
     ]
 } as unknown as PacienteData;
 
@@ -108,7 +118,8 @@ const initialState = {
                 return {
                     ...state,
                     lastHealthHour: action.lastHealthHour,
-                    idPaciente: action.idPaciente
+                    idPaciente: action.idPaciente,
+                    checkBox: action.checkBox
                 }
             case UserActionTypes.NOTAS:
                 return {

@@ -5,12 +5,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-const Dropdown = ({dados, disabled}) => {
+const Dropdown = ({dados, disabled, handleClick}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [value, setValue] = useState('Selecione uma opção');
 
     useEffect(() => {
-        // Use useEffect para observar as mudanças em "disabled" e atualizar "isOpen" de acordo
         if(disabled) {
           setIsOpen(false);
         }
@@ -24,6 +23,13 @@ const Dropdown = ({dados, disabled}) => {
 
     const toggleButton = (value) => {
         setValue(value)
+        setIsOpen(false)
+        if (handleClick) {  
+            if (value === 'Selecione uma opção') {
+                value = '';
+            }
+            handleClick(value)
+        }
     }
     return(
         <>

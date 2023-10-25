@@ -2,9 +2,7 @@ import React from 'react';
 import { Text, View, Image, TouchableOpacity, BackHandler  } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-import * as Animatable from 'react-native-animatable'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ErrorInfo } from '../../redux/errorInfo/types';
 import { useSelector } from 'react-redux';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react'

@@ -1,9 +1,9 @@
-import { BackHandler, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Etapa from "./const";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { NavigationProp } from "@react-navigation/native";
 import Quiz from "../../components/Quiz";
 import styles from '../../components/Quiz/styles';
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import { grade } from "../App";
 import { Dialog } from "react-native-elements";
