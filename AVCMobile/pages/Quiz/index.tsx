@@ -171,7 +171,7 @@ export const Etapas = Etapa.map((etapa, index) => {
           </View>
           
           <Dialog isVisible={visible} onBackdropPress={toggleDialog} overlayStyle={{ backgroundColor: '#249E9F', alignItems: 'center', height: 'auto', width: 300, justifyContent: 'center' }}>
-                <Dialog.Title titleStyle={{color: '#fff', fontFamily: 'Roboto-Bold', textAlign: 'center', fontSize: 24}} title="Atenção!!"/>
+                <Dialog.Title titleStyle={{color: '#fff', fontFamily: 'Roboto-Bold', textAlign: 'center', fontSize: 24}} title="Atenção!"/>
                 <Text style={{color: '#fff', fontFamily: 'Roboto-Medium'}}>Ainda há questões em branco!</Text>
                 {nullIndexes.map((question, index) => (
                   <Text key={index} style={{color: '#fff', fontFamily: 'Roboto-Light'}}>{Etapa[question].description}</Text>

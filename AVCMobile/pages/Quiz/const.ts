@@ -14,7 +14,7 @@ const Etapa: Array<Etapas> = [
     },
     {
         description: 'Etapa 1.1 | Orientação',
-        hint: 'O paciente é questionado sobre o mês e sua idade. A resposta deve ser correta – não há nota parcial por chegar perto. Pacientes com afasia ou esturpor que não compreendem as perguntas irão receber.',
+        hint: 'O paciente é questionado sobre o mês e sua idade. A resposta deve ser correta – não há nota parcial por chegar perto. Pacientes com afasia ou estupor que não compreendem as perguntas irão receber nota 2.',
         questions: ['Responde ambas as questões corretamente', 'Responde uma questão corretamente', 'Não responde nenhuma questão corretamente'],
         hasNT: false
     },
@@ -26,13 +26,13 @@ const Etapa: Array<Etapas> = [
     },
     {
         description: 'Etapa 2 | Olhar',
-        hint: 'Somente os movimentos oculares horizontais são testados. Movimentos oculares voluntários ou reflexos (óculo-cefálico) recebem nota, mas a prova calórica não é usada. Se o paciente tem um desvio conjugado do olhar, que pode ser sobreposto por atividade voluntária ou reflexa, o escore será.',
+        hint: 'Somente os movimentos oculares horizontais são testados. Movimentos oculares voluntários ou reflexos (óculo-cefálico) recebem nota, mas a prova calórica não é usada. Se o paciente tem um desvio conjugado do olhar, que pode ser sobreposto por atividade voluntária ou reflexa, o escore será 1.',
         questions: ['Normal', 'Paralisia parcial do olhar', 'Desvio forçado ou paralisia total do olhar'],
         hasNT: false
     },
     {
         description: 'Etapa 3 | Campos Visuais',
-        hint: 'OS campos visuais (quadrantes superiores e inferiores) são testados por confrontação, utilizando contagem de dedos ou ameaça visual, conforme apropriado. O paciente deve ser encorajado, mas se olha para o lado do movimento dos dedos, deve ser considerado como normal. Se houver cegueira unilateral ou enucleação, os campos visuais no olho restante são avaliados.',
+        hint: 'Os campos visuais (quadrantes superiores e inferiores) são testados por confrontação, utilizando contagem de dedos ou ameaça visual, conforme apropriado. O paciente deve ser encorajado, mas se olha para o lado do movimento dos dedos, deve ser considerado como normal. Se houver cegueira unilateral ou enucleação, os campos visuais no olho restante são avaliados.',
         questions: ['Sem perda visual', 'Hemianopsia parcial', 'Hemianopsia completa', 'Hemianopsia bilateral (cego, incluindo cegueira cortical)'],
         hasNT: false
     },

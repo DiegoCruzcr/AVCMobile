@@ -113,7 +113,7 @@ const ComplementUserData = ({ navigation }: { navigation: NavigationProp<any> })
                 check.answer = surgeries;
             
             }   else if (check.step_number === "0.31" && auxBool === false) {
-                check.answer = '';
+                check.answer = 'Não efetuou';
             }
              else if (check.step_number === "0.4") {
                 check.boolean_choice = selectedBleeding;
